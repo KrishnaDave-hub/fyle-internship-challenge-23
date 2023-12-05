@@ -7,11 +7,25 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(
-    private apiService: ApiService
-  ) {}
+  title = "Fyle Internship Challenge"
+  inputUser:any=''
+
+  repositoriesWithLanguages: any[] = [];
+
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+    this.getUserRepositories();
+  }
+
+  getUserRepositories(): void {
+    this.apiService.getUserRepositoriesWithLanguages(this.inputUser).subscribe(
+      (reposWithLangs: any[]) => {
+        this.apiService.setRepositoriesWithLanguages(reposWithLangs);
+      },
+      error => {
+        console.error('Error fetching repositories and languages:', error);
+      }
+    );
   }
 }

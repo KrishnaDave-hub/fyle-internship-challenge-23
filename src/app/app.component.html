@@ -1,5 +1,14 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="container">
+  <div class="grid grid-rows-2 mt-5 place-items-center">
+    <div class="font-bold text-3xl">
+      {{title}}
+    </div>
+    <div class="form-group" ngModel>
+      <label for="githubUser">Enter Any Github Username</label>
+      <input type="text" name="githubUser" id="githubUser" [(ngModel)]="inputUser">
+      <button class="py-2 px-4 mt-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" (click)="getUserRepositories()">Submit</button>
+    </div>
   </div>
 </div>
+
+<app-userData [inputUser]="inputUser"></app-userData>
